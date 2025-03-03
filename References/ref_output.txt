@@ -1,0 +1,293 @@
+{
+  "title": "Make to Order Production",
+  "Objective":"The primary objective of this process flow is to ensure the streamlined execution of a Make-to-Order production strategy within a process manufacturing environment. It aims to facilitate seamless coordination between departments to fulfill customer-specific production orders efficiently while maintaining compliance with quality, delivery timelines, and operational standards.",
+  "purpose":"The purpose of this process flow is to streamline the Make-to-Order Production Process in a Process Manufacturing environment by integrating and coordinating key activities across various roles, from sales order creation to billing. It aims to ensure efficient resource utilization, minimize production delays, and deliver customer-specific orders with high accuracy. By clearly defining responsibilities and enabling smooth handoffs between departments such as Sales, Production Planning, Manufacturing, Warehouse, and Billing, the process enhances interdepartmental collaboration. It also ensures traceability, compliance, and real-time responsiveness to customer needs, while optimizing logistics and financial processes to support timely delivery and accurate invoicing.",
+  "steps": [
+    {
+      "step": 1,
+      "role": "Internal Sales Representative",
+      "activities": [
+        {
+          "task": "Create Sales Quotation",
+          "optional": true
+        },
+        {
+          "task": "Create Sales Order with Reference to Quotation",
+          "details": [
+            "Log in to SAP Fiori Launchpad.",
+            "Open your browser and log in to the SAP Fiori Launchpad using your credentials.",
+            "In the Fiori Launchpad, search for the 'Create Sales Order' app.",
+            "Open the 'Create Sales Order' Fiori app.",
+            "When the app opens, you'll be prompted to enter details for the Sales Order.",
+            "In this step, you'll select the:",
+            {
+              "Sales Organization": "XXXX",
+              "Distribution Channel": "XX",
+              "Division": "XX"
+            },
+            "Under the Quotation field, you will find an option to enter a Quotation Number.",
+            "System will automatically copy the relevant details (such as products, pricing, customer information, etc.) from the quotation into the Sales Order.",
+            "The Fiori app will display all of the details that were copied from the quotation, such as:",
+            [
+              "Items",
+              "Pricing conditions",
+              "Quantities",
+              "Delivery dates"
+            ],
+            "Click the Save button to create the Sales Order.",
+            "The system will generate a Sales Order Number that you can use for further processing."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "role": "Production Planner",
+      "activities": [
+        {
+          "task": "Run MRP (manual)",
+          "details": []
+        },
+        {
+          "task": "Run MRP (Batch)",
+          "details": [
+            "In the Fiori Launchpad search bar, type 'Schedule MRP' or 'Schedule MRP Runs'.",
+            "You can also browse for it under the Production Planning or Material Management groups if you have those tiles available.",
+            "Click on the 'Schedule MRP' app to open it.",
+            "In the Schedule MRP app, click on 'Create' or 'Schedule New Job'.",
+            "This will open the job creation screen.",
+            "Enter the values in the Template Selection:",
+            {
+              "Job Template": "Select the template",
+              "Job Name": "Provide the job name",
+              "Scheduling Options": {
+                "Start Immediately": "Check box",
+                "Job Start (Local Time)": "Choose a time"
+              },
+              "Parameters": [
+                "Plant",
+                "Material",
+                "Product Group",
+                "MRP Controller"
+              ]
+            },
+            "Define Material Scope, Scheduling, and Planning Mode (mandatory).",
+            "Click on the Schedule button to schedule the job."
+          ]
+        },
+        {
+          "task": "Monitor Material Coverage",
+          "details": []
+        },
+        {
+          "task": "Create Procurement of Direct Materials",
+          "details": [
+            "This is a separate process."
+          ]
+        },
+        {
+          "task": "Create Subcontracting Order",
+          "details": [
+            "This is a separate process."
+          ]
+        },
+        {
+          "task": "Convert Planned Orders to Process Order",
+          "details": [
+            "In the Fiori Launchpad search bar, type 'Convert Planned Orders' to find the relevant app.",
+            "Click on the 'Manage Planned Orders' app to open it.",
+            "Once the app is open, you will see a list of Planned Orders.",
+            "You can filter the list based on parameters such as:",
+            [
+              "Plant",
+              "Material",
+              "MRP Controller",
+              "Order Status (e.g., 'Created', 'Released')",
+              "Date Range"
+            ],
+            "You can also search for specific planned orders by entering the Planned Order Number or Material Number if you already have those details.",
+            "From the filtered list, select the planned orders you want to convert into process orders.",
+            "You can select multiple planned orders at once if needed, depending on the system setup.",
+            "After selecting the planned orders, click on the 'Convert to Process Order' button or the appropriate option in the app.",
+            "Process Orders are Created."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "role": "Production Supervisor – Process Manufacturing",
+      "activities": [
+        {
+          "task": "Review Process Orders",
+          "details": []
+        },
+        {
+          "task": "Preview Output Document for Process Order",
+          "details": []
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "role": "Production Operator – Process Manufacturing",
+      "activities": [
+        {
+          "task": "Pick list generated",
+          "details": [
+            "Search for 'Pick Components for Production Orders' or 'Pick List' for production orders in the Fiori Launchpad.",
+            "Enter the 'Picking Profile'.",
+            "Selection at header level with:",
+            [
+              "Production Order",
+              "Materials",
+              "Plant",
+              "Order Type",
+              "MRP Controller",
+              "Production Supervisor",
+              "Sold-to-Party",
+              "Sales Order",
+              "WBS Element",
+              "Sequence Number",
+              "Priority",
+              "Status Selection Profile",
+              "System status",
+              "Stock Segment"
+            ],
+            "Selection at operation level with:",
+            [
+              "Work Center",
+              "Plant"
+            ],
+            "Selection at component level:",
+            [
+              "Component",
+              "Plant",
+              "Storage Location",
+              "Status Selection Profile"
+            ],
+            "Options include the Number of Orders and respective flags for display/deletion/complete.",
+            "Specify Absolute Dates at header level for:",
+            [
+              "Basic Start and Finish date",
+              "Scheduled Start and Finish date"
+            ],
+            "Once the items are picked, 'execute' the transaction for 'goods issue'."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "role": "Warehouse Clerk",
+      "activities": [
+        {
+          "task": "No Pick List Generated",
+          "details": [
+            "Manual Goods Issue."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "role": "Production Supervisor – Process Manufacturing",
+      "activities": [
+        {
+          "task": "Monitor Order Progress",
+          "details": []
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "role": "Production Operator – Process Manufacturing",
+      "activities": [
+        {
+          "task": "Confirm Process Order",
+          "details": [
+            "In the Fiori Launchpad search bar, type 'Confirm Production Order' and find the relevant app and click the same.",
+            "Enter the following:",
+            {
+              "Confirmation Number": "Provide confirmation number",
+              "Order Number": "Provide order number"
+            },
+            "'Save' the Production Order for confirmation."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "role": "Warehouse Clerk",
+      "activities": [
+        {
+          "task": "Post Goods Receipt for Process Order",
+          "details": [
+            "In the Fiori Launchpad search bar, type 'Post Goods Receipt for Production Order' and find the relevant app and click the same.",
+            "Click on the 'Post Goods Receipt for Production Order' app to open it.",
+            "Enter the Production Order Information.",
+            "Specify the following parameters:",
+            {
+              "Goods Receipt Date": "Specify the date when the goods receipt should be posted.",
+              "Quantity": "Enter the quantity of the finished goods that are being received into inventory.",
+              "Batch Number": "If applicable, specify the batch number for the received goods (for batch-managed materials).",
+              "Storage Location": "Ensure the goods are being received into the correct storage location within the plant."
+            },
+            "After confirming all the details, click the 'Post' button to post the goods receipt for the production order.",
+            "The system will update the inventory with the received goods and change the status of the production order accordingly.",
+            "Once the goods receipt is successfully posted, you will receive a confirmation message, typically indicating the document number of the posted goods receipt."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "role": "Shipping Specialist",
+      "activities": [
+        {
+          "task": "Create Delivery with Order Reference",
+          "details": [
+            "In the search bar at the top of the Fiori Launchpad, type 'Create Delivery' or 'Create Outbound Delivery'.",
+            "Click on the 'Create Delivery' app to open it. This is the app that allows you to create deliveries based on sales orders.",
+            "Once the app is open, you will need to reference the Sales Order to create the delivery.",
+            "In the Sales Order field, enter the Sales Order Number for which you want to create the delivery.",
+            "Select the Delivery Type (e.g., Standard Delivery, Partial Delivery, etc.) depending on your business process.",
+            "Verify details like Shipping Point, Shipping Date, and Storage Location.",
+            "Check the availability of materials using the Availability Check button.",
+            "Once you have reviewed the details and confirmed the quantities, click on the 'Create Delivery' button.",
+            "The system will create the delivery document and assign it a unique Delivery Number.",
+            "Execute Picking:",
+            "In the search bar at the top of the Fiori Launchpad, type 'Pick Outbound Delivery'.",
+            "Enter the Delivery Number.",
+            "Under Delivery Items tab, enter the pick quantities to pick the materials based on the availability.",
+            "Select the line item of the materials.",
+            "Click on 'Copy Pick Quantity' and click on 'Save' button.",
+            "Picking is completed.",
+            "Post Goods Issue:",
+            "Now click on 'Post Goods Issue'."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "role": "Billing Clerk",
+      "activities": [
+        {
+          "task": "Create Billing Documents",
+          "details": [
+            "In the Fiori Launchpad search bar, type 'Create Billing Document' or 'Create Billing' to locate the relevant app.",
+            "Click on the 'Create Billing Document' app to open it.",
+            "Once the app is open, enter Sales Order(s) or Delivery Number(s) to generate the billing document.",
+            "Choose the appropriate Billing Type.",
+            "Once all the details are confirmed, click on the 'Create Billing Document' button to generate the invoice.",
+            "After the billing document is created, the system will display the document’s details, including the Invoice Number, Amount, Tax Information, and other relevant billing details.",
+            "After reviewing the billing document, click 'Save' to finalize and save the document.",
+            "Billing document is created."
+          ]
+        }
+      ]
+    }
+  ]
+}
